@@ -2,17 +2,11 @@
 
 ## 1. Información General
 
-**Nombre de la Base de Datos:** `campeonato_futbol`
-
-**Descripción del Proyecto:**
-Base de datos para gestionar información de campeonatos de fútbol, incluyendo equipos, jugadores, técnicos, árbitros, partidos, estadios y sanciones.
-
-**Notación ER Utilizada:**
-
-- [X] **ER Chen**: Enfoque teórico clásico (entidades, relaciones, atributos con notación formal)
-- [ ] **ER Ramakrishnan (EER)**: Extensión de Chen con especialización, generalización y agregación
+**Notación E/R Chen**
 
 **Fecha de Elaboración:** [10/09/2026]
+
+
 
 ---
 
@@ -20,40 +14,40 @@ Base de datos para gestionar información de campeonatos de fútbol, incluyendo 
 
 ### 2.1 Listado de Entidades
 
-| #  | Nombre Entidad                    | Tipo        | Descripción                                     |
-| -- | --------------------------------- | ----------- | ------------------------------------------------ |
-| 1  | **Técnico**                | Fuerte      | Entrenadores de equipos                          |
-| 2  | **Jugador**                 | Fuerte      | Deportistas que participan en partidos           |
-| 3  | **Dirigente**               | Fuerte      | Directivos de equipos o campeonatos              |
-| 4  | **Árbitro**                | Fuerte      | Árbitros que dirigen partidos                   |
-| 5  | **Integrantes Tribunal**    | Fuerte      | Miembros del tribunal de árbitros               |
-| 6  | **Equipo**                  | Fuerte      | Equipos participantes                            |
-| 7  | **Campeonato**              | Fuerte      | Campeonatos o torneos                            |
-| 8  | **Estadio**                 | Fuerte      | Lugares donde se juegan los partidos             |
-| 9  | **Partido**                 | Débil      | Encuentros entre equipos (depende de Campeonato) |
-| 10 | **Sentenciable**            | Fuerte      | Entidad para sanciones                           |
-| 11 | **Sancionable**             | Fuerte      | Entidad padre de los que pueden ser sancionados  |
-| 12 | **Falta de Partido**        | Débil      | Infracciones cometidas en un partido             |
-| 13 | **Gol de Partido**          | Débil      | Goles anotados en un partido                     |
-| 14 | **Sentencias**              | Débil      | Castigos aplicados por infracciones              |
-| 15 | **Fecha-hora**              | Fuerte      | [Completar descripción]                         |
-| 16 | **Cuerpo Técnico**         | Agregación | Conjunto de técnicos de un equipo               |
-| 17 | **Plantel Jugadores**       | Agregación | Conjunto de jugadores de un equipo               |
-| 18 | **Equipo de Campeonato**    | Agregación | Participación de un equipo en un campeonato     |
-| 19 | **Partido de Campeonato**   | Agregación | Partidos específicos de un campeonato           |
-| 20 | **Equipo Local de Estadio** | Agregación | Relación de equipo como local en un estadio     |
-| 21 | **Grupo Dirigentes**        | Agregación | Conjunto de dirigentes de un equipo              |
+| #  | Nombre Entidad                         | Tipo        | Descripción                                     |
+| -- | -------------------------------------- | ----------- | ------------------------------------------------ |
+| 1  | **Sentenciable**                  | Fuerte      | Entidad padre de los que pueden ser sancionados  |
+| 2  | **Técnico**                     | Fuerte      | Entrenadores de equipos                          |
+| 3  | **Jugador**                      | Fuerte      | Deportistas que participan en partidos           |
+| 4  | **Dirigente**                    | Fuerte      | Directivos de equipos o campeonatos              |
+| 5  | **Árbitro**                     | Fuerte      | Árbitros que dirigen partidos                   |
+| 6  | **Integrantes Tribunal**         | Fuerte      | Miembros del tribunal de árbitros               |
+| 7  | **Equipo**                       | Fuerte      | Equipos participantes                            |
+| 8  | **Campeonato**                   | Fuerte      | Campeonatos o torneos                            |
+| 9  | **Estadio**                      | Fuerte      | Lugares donde se juegan los partidos             |
+| 11 | **Fecha-hora**                   | Fuerte      | [Completar descripción]                         |
+| 12 | **Falta de Partido**             | Débil      | Infracciones cometidas en un partido             |
+| 13 | **Gol de Partido**               | Débil      | Goles anotados en un partido                     |
+| 14 | **Sentencias**                   | Débil      | Castigos aplicados por infracciones              |
+| 15 | **Cuerpo Técnico**              | Débil      | Conjunto de técnicos de un equipo               |
+| 16 | **Plantel Jugadores**            | Débil      | Conjunto de jugadores de un equipo               |
+| 17 | **Grupo Dirigentes**             | Agregación | Conjunto de dirigentes de un equipo              |
+| 18 | **Equipo de Campeonato**         | Agregación | Participación de un equipo en un campeonato     |
+| 19 | **Equipo ganador de Campeonato** | Agregación | Participación de un equipo en un campeonato     |
+| 20 | **Equipo Local de Estadio**      | Agregación | Relación de equipo como local en un estadio     |
+| 21 | **Partido**                      | Agregación | Encuentros entre equipos (depende de Campeonato) |
+| 22 | **Partido de Campeonato**        | Agregación | Partidos específicos de un campeonato           |
 
 ---
 
 ### 2.2 Detalle de Entidades
 
-#### Entidad: **Técnico**
+#### Entidad: **Sentenciable**
 
-**Tipo:** [x] Entidad Fuerte | [ ] Entidad Débil | [ ] Entidad Derivada
+**Tipo:** Entidad Fuerte - Padre
 
 **Descripción:**
-[Descripción detallada del propósito de la entidad Técnico]
+[Descripción detallada - Entidad que puede recibir sanciones]
 
 **Atributos:**
 
@@ -64,136 +58,156 @@ Base de datos para gestionar información de campeonatos de fútbol, incluyendo 
 | fecha de nacimiento | DATE         | NOT NULL     | Fecha de nacimiento               |
 | nacionalidad        | VARCHAR(50)  | NOT NULL     | Nacionalidad del técnico         |
 
-**Clave Primaria:** `T.rut/pasaporte`
+**Nota:** Esta es una entidad padre de Técnico y Jugador
 
-**Claves Candidatas:** [Si existen otras opciones de clave]
+---
 
-**Restricciones Especiales:** [UNIQUE, CHECK, valores por defecto]
+#### Entidad: **Técnico**
 
-**Notas:** [Consideraciones especiales]
+**Tipo:** Entidad Fuerte
+
+| Atributo              | Tipo de Dato | Constraints  | Descripción                      |
+| --------------------- | ------------ | ------------ | --------------------------------- |
+| [rut/pasaporte]       | VARCHAR(20)  | PK, NOT NULL | Identificador único del técnico |
+| [nombre completo]     | VARCHAR(100) | NOT NULL     | Nombre del técnico               |
+| [fecha de nacimiento] | DATE         | NOT NULL     | Fecha de nacimiento               |
+| [nacionalidad]        | VARCHAR(50)  | NOT NULL     | Nacionalidad del técnico         |
+
+**Clave Primaria:** `rut/pasaporte`
+
+**Notas:** Entidad hijo de Sentenciable
 
 ---
 
 #### Entidad: **Jugador**
 
-**Tipo:** [x] Entidad Fuerte | [ ] Entidad Débil | [ ] Entidad Derivada
-
-**Descripción:**
-[Descripción detallada del propósito de la entidad Jugador]
+**Tipo:** Entidad Fuerte
 
 **Atributos:**
 
-| Atributo            | Tipo de Dato  | Constraints  | Descripción                     |
-| ------------------- | ------------- | ------------ | -------------------------------- |
-| J.rut/pasaporte     | VARCHAR(20)   | PK, NOT NULL | Identificador único del jugador |
-| nombre completo     | VARCHAR(100)  | NOT NULL     | Nombre del jugador               |
-| fecha de nacimiento | DATE          | NOT NULL     | Fecha de nacimiento              |
-| nacionalidad        | VARCHAR(50)   | NOT NULL     | Nacionalidad                     |
-| posición           | VARCHAR(30)   | NOT NULL     | Posición en el campo            |
-| equipo              | VARCHAR(50)   | NULL         | Equipo actual                    |
-| sueldo              | DECIMAL(10,2) | NULL         | Salario mensual                  |
+| Atributo              | Tipo de Dato  | Constraints  | Descripción                     |
+| --------------------- | ------------- | ------------ | -------------------------------- |
+| [rut/pasaporte]       | VARCHAR(20)   | PK, NOT NULL | Identificador único del jugador |
+| [nombre completo]     | VARCHAR(100)  | NOT NULL     | Nombre del jugador               |
+| [fecha de nacimiento] | DATE          | NOT NULL     | Fecha de nacimiento              |
+| [nacionalidad]        | VARCHAR(50)   | NOT NULL     | Nacionalidad                     |
+| posición             | VARCHAR(30)   | NOT NULL     | Posición en el campo            |
+| equipo                | VARCHAR(50)   | NOT NULL     | Equipo actual                    |
+| sueldo                | DECIMAL(10,2) | NOT NULL     | Salario mensual                  |
 
-**Clave Primaria:** `J.rut/pasaporte`
+**Clave Primaria:** `rut/pasaporte`
 
-**Claves Candidatas:** [Si existen]
-
-**Restricciones Especiales:** [UNIQUE, CHECK]
-
-**Notas:** [Consideraciones]
+**Notas:** Entidad hijo de Sentenciable
 
 ---
 
 #### Entidad: **Dirigente**
 
-**Tipo:** [x] Entidad Fuerte | [ ] Entidad Débil | [ ] Entidad Derivada
+**Tipo:** Entidad Fuerte
 
 **Descripción:**
 [Descripción detallada]
 
 **Atributos:**
 
-| Atributo        | Tipo de Dato | Constraints   | Descripción                  |
-| --------------- | ------------ | ------------- | ----------------------------- |
-| D.rut/pasaporte | VARCHAR(20)  | PK, NOT NULL  | Identificador único          |
-| nombre completo | VARCHAR(100) | NOT NULL      | Nombre                        |
-| cargo           | VARCHAR(50)  | NOT NULL      | Cargo dentro de la estructura |
-| [atributo]      | [Tipo]       | [Constraints] | [Descripción]                |
+| Atributo            | Tipo de Dato | Constraints  | Descripción                    |
+| ------------------- | ------------ | ------------ | ------------------------------- |
+| rut/pasaporte     | VARCHAR(20)  | PK, NOT NULL | Identificador único            |
+| nombre completo     | VARCHAR(100) | NOT NULL     | Nombre                          |
+| fecha de nacimiento | DATE         | NOT NULL     | Fecha de nacimiento             |
+| nacionalidad        | VARCHAR(50)  | NOT NULL     | Nacionalidad                    |
+| cargo               | VARCHAR(50)  | NOT NULL     | Cargo dentro de la estructura   |
+| email               | VARCHAR(50)  | NOT NULL     | correo electrónico de contacto |
+| telefono            | VARCHAR(15)  | NOT NULL     | numero telefónico de contacto  |
+| equipo              | VARCHAR(50)  | NOT NULL     | Equipo actual                   |
+| fecha inicio        | DATE         | NOT NULL     | Salario mensual                 |
+| fecha fin           | DATE         | NOT NULL     | Salario mensual                 |
 
-**Clave Primaria:** `D.rut/pasaporte`
+**Clave Primaria:** `rut/pasaporte`
 
-**Notas:** [Consideraciones]
+**Notas:**
 
 ---
 
 #### Entidad: **Árbitro**
 
-**Tipo:** [x] Entidad Fuerte | [ ] Entidad Débil
-
-**Descripción:**
-[Descripción detallada]
+**Tipo:** Entidad Fuerte
 
 **Atributos:**
 
-| Atributo            | Tipo de Dato | Constraints  | Descripción         |
-| ------------------- | ------------ | ------------ | -------------------- |
-| A.rut/pasaporte     | VARCHAR(20)  | PK, NOT NULL | Identificador único |
-| nombre completo     | VARCHAR(100) | NOT NULL     | Nombre               |
-| fecha de nacimiento | DATE         | NOT NULL     | Fecha de nacimiento  |
-| nacionalidad        | VARCHAR(50)  | NOT NULL     | Nacionalidad         |
+| Atributo            | Tipo de Dato | Constraints  | Descripción                    |
+| ------------------- | ------------ | ------------ | ------------------------------- |
+| rut/pasaporte     | VARCHAR(20)  | PK, NOT NULL | Identificador único            |
+| nombre completo     | VARCHAR(100) | NOT NULL     | Nombre                          |
+| fecha de nacimiento | DATE         | NOT NULL     | Fecha de nacimiento             |
+| nacionalidad        | VARCHAR(50)  | NOT NULL     | Nacionalidad                    |
+| email               | VARCHAR(50)  | NOT NULL     | correo electrónico de contacto |
+| telefono            | VARCHAR(15)  | NOT NULL     | numero telefónico de contacto  |
 
-**Clave Primaria:** `A.rut/pasaporte`
+**Clave Primaria:** `rut/pasaporte`
 
 ---
 
 #### Entidad: **Integrantes Tribunal**
 
-**Tipo:** [x] Entidad Fuerte | [ ] Entidad Débil
+**Tipo:** Entidad Fuerte
 
 **Descripción:**
 [Descripción detallada]
 
 **Atributos:**
 
-| Atributo | Tipo de Dato | Constraints | Descripción   |
-| -------- | ------------ | ----------- | -------------- |
-| [id]     | [Tipo]       | PK          | [Descripción] |
+| Atributo            | Tipo de Dato | Constraints  | Descripción                    |
+| ------------------- | ------------ | ------------ | ------------------------------- |
+| rut/pasaporte     | VARCHAR(20)  | PK, NOT NULL | Identificador único            |
+| nombre completo     | VARCHAR(100) | NOT NULL     | Nombre                          |
+| fecha de nacimiento | DATE         | NOT NULL     | Fecha de nacimiento             |
+| email               | VARCHAR(50)  | NOT NULL     | correo electrónico de contacto |
+| telefono            | VARCHAR(15)  | NOT NULL     | numero telefónico de contacto  |
+
+**Clave Primaria:** `rut/pasaporte`
 
 ---
 
 #### Entidad: **Equipo**
 
-**Tipo:** [x] Entidad Fuerte | [ ] Entidad Débil
+**Tipo:** Entidad Fuerte
 
 **Descripción:**
 [Descripción detallada]
 
 **Atributos:**
 
-| Atributo    | Tipo de Dato | Constraints | Descripción         |
-| ----------- | ------------ | ----------- | -------------------- |
-| [id_equipo] | [Tipo]       | PK          | Identificador único |
-| [nombre]    | [Tipo]       | NOT NULL    | [Descripción]       |
+| Atributo   | Tipo de Dato | Constraints | Descripción                    |
+| ---------- | ------------ | ----------- | ------------------------------- |
+| rut        | VARCHAR(20)  | PK,NOT NULL | Identificador único            |
+| nombre     | VARCHAR(100) | NOT NULL    | nombre del equipo               |
+| email      | VARCHAR(50)  | NOT NULL    | correo electrónico de contacto |
+| dirección | VARCHAR(200) | NOT NULL    | Ubicación                      |
+| presidente | VARCHAR(100) | NOT NULL    | Nombre del presidente           |
+
+**Clave Primaria:** `rut`
 
 ---
 
 #### Entidad: **Campeonato**
 
-**Tipo:** [x] Entidad Fuerte | [ ] Entidad Débil
-
-**Descripción:**
-[Descripción detallada]
+**Tipo:** Entidad Fuerte
 
 **Atributos:**
 
-| Atributo | Tipo de Dato | Constraints | Descripción         |
-| -------- | ------------ | ----------- | -------------------- |
-| [id]     | [Tipo]       | PK          | Identificador único |
+| Atributo | Tipo de Dato | Constraints | Descripción          |
+| -------- | ------------ | ----------- | --------------------- |
+| nombre   | VARCHAR(100) | NOT NULL    | nombre del campeonato |
+| tipo     | VARCHAR(20)  | NOT NULL    | nombre del campeonato |
+
+**Clave Primaria:** `nombre`
 
 ---
 
 #### Entidad: **Estadio**
 
-**Tipo:** [x] Entidad Fuerte | [ ] Entidad Débil
+**Tipo:** Entidad Fuerte
 
 **Descripción:**
 [Descripción detallada]
@@ -202,57 +216,12 @@ Base de datos para gestionar información de campeonatos de fútbol, incluyendo 
 
 | Atributo     | Tipo de Dato | Constraints | Descripción         |
 | ------------ | ------------ | ----------- | -------------------- |
-| [id_estadio] | [Tipo]       | PK          | Identificador único |
 | [nombre]     | [Tipo]       | NOT NULL    | Nombre del estadio   |
+| [id_estadio] | [Tipo]       | PK          | Identificador único |
+| dirección   | VARCHAR(200) | NOT NULL    | Ubicación           |
 | dirección   | VARCHAR(200) | NOT NULL    | Ubicación           |
 
----
-
-#### Entidad: **Partido** (Entidad Débil)
-
-**Tipo:** [ ] Entidad Fuerte | [x] Entidad Débil
-
-**Entidad Propietaria:** `Campeonato`
-
-**Descripción:**
-[Descripción detallada]
-
-**Atributos:**
-
-| Atributo         | Tipo de Dato | Constraints    | Descripción             |
-| ---------------- | ------------ | -------------- | ------------------------ |
-| id_campeonato    | INT          | FK, PK Parcial | Referencia al campeonato |
-| hora             | TIME         | PK Parcial     | Hora del partido         |
-| fecha            | DATE         | PK Parcial     | Fecha del partido        |
-| dirección       | VARCHAR(200) | NOT NULL       | Lugar del partido        |
-| equipo_local     | VARCHAR(50)  | NOT NULL       | Equipo local             |
-| equipo_visitante | VARCHAR(50)  | NOT NULL       | Equipo visitante         |
-
-**Clave Primaria Compuesta:**
-
-```
-PK = (id_campeonato, hora, fecha, dirección)
-```
-
-**Justificación de entidad débil:**
-[Explicar por qué depende de Campeonato]
-
----
-
-#### Entidad: **Sentenciable**
-
-**Tipo:** [x] Entidad Fuerte | [ ] Entidad Débil
-
-**Descripción:**
-[Descripción detallada - Entidad que puede recibir sanciones]
-
-**Atributos:**
-
-| Atributo | Tipo de Dato | Constraints | Descripción         |
-| -------- | ------------ | ----------- | -------------------- |
-| [id]     | [Tipo]       | PK          | Identificador único |
-
-**Nota:** Esta es una entidad padre para especialización
+**Clave Primaria:** `rut/pasaporte`
 
 ---
 
@@ -565,6 +534,37 @@ Conjunto de jugadores de un equipo.
 
 **Descripción:**
 Representación de la participación de un equipo en un campeonato específico.
+
+---
+
+#### Entidad: **Partido** (Entidad Débil)
+
+**Tipo:**  | [x] Entidad Débil
+
+**Entidad Propietaria:** `Campeonato`
+
+**Descripción:**
+[Descripción detallada]
+
+**Atributos:**
+
+| Atributo         | Tipo de Dato | Constraints    | Descripción             |
+| ---------------- | ------------ | -------------- | ------------------------ |
+| id_campeonato    | INT          | FK, PK Parcial | Referencia al campeonato |
+| hora             | TIME         | PK Parcial     | Hora del partido         |
+| fecha            | DATE         | PK Parcial     | Fecha del partido        |
+| dirección       | VARCHAR(200) | NOT NULL       | Lugar del partido        |
+| equipo_local     | VARCHAR(50)  | NOT NULL       | Equipo local             |
+| equipo_visitante | VARCHAR(50)  | NOT NULL       | Equipo visitante         |
+
+**Clave Primaria Compuesta:**
+
+```
+PK = (id_campeonato, hora, fecha, dirección)
+```
+
+**Justificación de entidad débil:**
+[Explicar por qué depende de Campeonato]
 
 ---
 
